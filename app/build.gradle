@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "io.github.myolwin00.sunshine"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    	buildConfigField 'String', 'WeatherApiKey', WeatherApiKey
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation rootProject.ext.lib.appcompat
+    implementation rootProject.ext.lib.support
+    implementation rootProject.ext.lib.constraint
+    implementation rootProject.ext.lib.design
+    implementation rootProject.ext.lib.cardview
+    implementation rootProject.ext.lib.retrofit
+    implementation rootProject.ext.lib.retrofitConverterGson
+
+    implementation "android.arch.lifecycle:extensions:1.0.0"
+    implementation "android.arch.lifecycle:common-java8:1.0.0"
+
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    //annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    kapt "android.arch.persistence.room:compiler:1.0.0"
+
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    implementation "com.google.dagger:dagger:2.13"
+    //implementation "com.google.dagger:dagger-android:2.13"
+    //implementation "com.google.dagger:dagger-android-support:2.13"
+    kapt "com.google.dagger:dagger-compiler:2.13"
+    //kapt "com.google.dagger:dagger-android-processor:2.13"
+
+    testImplementation rootProject.ext.lib.junit
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
