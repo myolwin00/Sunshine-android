@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View.GONE
 import io.github.myolwin00.sunshine.R
 import io.github.myolwin00.sunshine.SunshineApp
 import io.github.myolwin00.sunshine.adapters.ForecastAdapter
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     private fun observeForecast() {
         mForecastVM.liveForecasts.observe(this, Observer {
             forecasts -> mForecastAdapter.replaceData(forecasts!!)
+            pb_loading.visibility = GONE
         })
     }
 }
