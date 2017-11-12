@@ -1,5 +1,6 @@
 package io.github.myolwin00.sunshine.data
 
+import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
@@ -18,7 +19,7 @@ class Forecast {
     @SerializedName("dt_txt")
     var mDtTxt: String? = null
 
-    @Ignore
+    @Embedded
     @SerializedName("main")
     var mMain: Main? = null
 

@@ -15,6 +15,7 @@ interface WeatherService {
     @GET("data/2.5/forecast")
     fun getForecasts (
             @Query("id") cityId: String,
+            @Query("units") unit: String,
             @Query("appid") apiKey: String
     ) : Call<ForecastResponse>
 }

@@ -21,7 +21,7 @@ class WeatherRemoteSource(retrofit: Retrofit) {
     private val weatherService: WeatherService = retrofit.create(WeatherService::class.java)
 
     fun getForecasts(callback: WeatherRepository.LoadForecastsCallback) {
-        weatherService.getForecasts(AppConst.RANGOON_ID, BuildConfig.WeatherApiKey)
+        weatherService.getForecasts(AppConst.RANGOON_ID, AppConst.TEMP_UNIT, BuildConfig.WeatherApiKey)
                 .enqueue(object: Callback<ForecastResponse> {
                     override fun onResponse(call: Call<ForecastResponse>,
                                             response: Response<ForecastResponse>) {

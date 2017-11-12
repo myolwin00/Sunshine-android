@@ -7,5 +7,6 @@ class AppConst {
 
     companion object {
         const val RANGOON_ID = "1298824"
+        const val TEMP_UNIT = "imperial"
     }
 }

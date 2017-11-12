@@ -16,7 +16,7 @@ class DaoModule {
     @Provides
     @Singleton
     fun provideForecastDB(context: Context): ForecastDB {
-        return ForecastDB.getForecastDb(context)
+        return ForecastDB.getImForecastDb(context)
     }
 
     @Provides
