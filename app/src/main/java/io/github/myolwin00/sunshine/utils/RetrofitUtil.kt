@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by myolwin00 on 11/11/17.
  */
-class RetrofitUtil private constructor() {
+class RetrofitUtil {
 
     private val retrofit: Retrofit
 
@@ -25,12 +25,6 @@ class RetrofitUtil private constructor() {
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
                 .client(okHttpClient)
                 .build()
-    }
-
-    companion object {
-        val instance: RetrofitUtil by lazy {
-            RetrofitUtil()
-        }
     }
 
     fun getRetrofitInstance(): Retrofit {

@@ -2,68 +2,56 @@ package io.github.myolwin00.sunshine.data.repository
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.content.Context
-import android.util.Log
-import io.github.myolwin00.sunshine.BuildConfig
 import io.github.myolwin00.sunshine.data.Forecast
-import io.github.myolwin00.sunshine.data.ForecastResponse
-import io.github.myolwin00.sunshine.data.source.local.ForecastDB
-import io.github.myolwin00.sunshine.data.source.local.ForecastDao
-import io.github.myolwin00.sunshine.data.source.remote.WeatherService
-import io.github.myolwin00.sunshine.utils.AppConst
-import io.github.myolwin00.sunshine.utils.RetrofitUtil
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.github.myolwin00.sunshine.data.source.local.WeatherLocalSource
+import io.github.myolwin00.sunshine.data.source.remote.WeatherRemoteSource
+
+
 
 /**
  * Created by myolwin00 on 11/11/17.
  */
-class WeatherRepository private constructor() {
+class WeatherRepository(weatherRemoteSource: WeatherRemoteSource, weatherLocalSource: WeatherLocalSource) {
 
-    private val weatherService: WeatherService
-    private val forecastsCache: MutableLiveData<List<Forecast>> = MutableLiveData()
-    private lateinit var forecastDao: ForecastDao
+    private val mWeatherRemoteSource: WeatherRemoteSource = weatherRemoteSource
+    private val mWeatherLocalSource: WeatherLocalSource = weatherLocalSource
 
-    companion object {
-        val instance: WeatherRepository by lazy {
-            WeatherRepository()
-        }
-    }
-
-    init {
-        val retrofit = RetrofitUtil.instance.getRetrofitInstance()
-        weatherService = retrofit.create(WeatherService::class.java)
-    }
-
-    fun setDb(db: ForecastDB) {
-        forecastDao = db.forecastDao
-    }
+    var mCachedForecasts: MutableLiveData<List<Forecast>> = MutableLiveData()
+    var hasCache = false
 
     fun getForecasts(): LiveData<List<Forecast>> {
 
-        return forecastDao.getForecast()
-
-        /*if(forecastsCache.value != null) {
-            return forecastsCache
+        if (!hasCache) {
+            val offlineForecasts = mWeatherLocalSource.getForecasts()
+            if (offlineForecasts != null && offlineForecasts.size > 0) {
+                refreshCache(offlineForecasts)
+            } else {
+                mWeatherRemoteSource.getForecasts(object: LoadForecastsCallback {
+                    override fun onLoaded(forecasts: List<Forecast>?) {
+                        if (forecasts != null) {
+                            refreshCache(forecasts)
+                            refreshLocalSource(forecasts)
+                        }
+                    }
+                    override fun onFailed() {
+                    }
+                })
+            }
         }
+        return mCachedForecasts
+    }
 
-        val liveForecasts: MutableLiveData<List<Forecast>> = MutableLiveData()
-        weatherService.getForecasts(AppConst.RANGOON_ID, BuildConfig.WeatherApiKey)
-                .enqueue(object: Callback<ForecastResponse> {
-                    override fun onResponse(call: Call<ForecastResponse>,
-                                            response: Response<ForecastResponse>) {
-                        liveForecasts.value = response.body()?.mForecast
-                        forecastsCache.value = response.body()?.mForecast
+    private fun refreshCache(forecasts: List<Forecast>) {
+        hasCache = true
+        mCachedForecasts.value = forecasts
+    }
 
-                        val savedCount = forecastDao.save(response.body()?.mForecast)
-                        Log.d("SunshineApp", "saved: " + savedCount.size)
-                    }
-                    override fun onFailure(call: Call<ForecastResponse>?, t: Throwable?) {
+    private fun refreshLocalSource(forecasts: List<Forecast>) {
+        mWeatherLocalSource.saveForecasts(forecasts)
+    }
 
-                    }
-        })
-
-        return liveForecasts*/
+    interface LoadForecastsCallback {
+        fun onLoaded(forecasts: List<Forecast>?)
+        fun onFailed()
     }
 }

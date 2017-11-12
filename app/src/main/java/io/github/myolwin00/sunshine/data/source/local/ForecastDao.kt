@@ -14,8 +14,8 @@ import io.github.myolwin00.sunshine.data.Forecast
 interface ForecastDao {
 
     @Insert(onConflict = REPLACE)
-    fun save(forecasts: List<Forecast>?): Array<Long>
+    fun saveForecasts(forecasts: List<Forecast>?): Array<Long>
 
     @Query("SELECT * FROM forecasts")
-    fun getForecast(): LiveData<List<Forecast>>
+    fun getForecasts(): List<Forecast>?
 }

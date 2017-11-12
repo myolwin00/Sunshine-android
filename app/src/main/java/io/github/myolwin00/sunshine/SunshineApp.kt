@@ -10,7 +10,7 @@ import io.github.myolwin00.sunshine.di.DaggerAppComponent
  */
 class SunshineApp : Application() {
 
-    private val appComponent: AppComponent by lazy {
+    val appComponent: AppComponent by lazy {
         DaggerAppComponent.builder().appModule(AppModule(this)).build()
     }
 
