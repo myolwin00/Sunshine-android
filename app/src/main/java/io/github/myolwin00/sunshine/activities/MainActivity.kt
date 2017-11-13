@@ -10,7 +10,6 @@ import io.github.myolwin00.sunshine.R
 import io.github.myolwin00.sunshine.SunshineApp
 import io.github.myolwin00.sunshine.adapters.ForecastAdapter
 import io.github.myolwin00.sunshine.data.repository.WeatherRepository
-import io.github.myolwin00.sunshine.data.source.local.ForecastDB
 import io.github.myolwin00.sunshine.data.viewmodel.ForecastVM
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject

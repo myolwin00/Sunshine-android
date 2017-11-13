@@ -1,15 +1,14 @@
 package io.github.myolwin00.sunshine.data
 
-import android.arch.persistence.room.Embedded
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
-import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.*
 import com.google.gson.annotations.SerializedName
+import io.github.myolwin00.sunshine.data.source.local.WeatherTypeConverter
 
 /**
  * Created by myolwin00 on 11/9/17.
  */
 @Entity(tableName = "forecasts")
+@TypeConverters(WeatherTypeConverter::class)
 class Forecast {
 
     @PrimaryKey
@@ -23,7 +22,6 @@ class Forecast {
     @SerializedName("main")
     var mMain: Main? = null
 
-    @Ignore
     @SerializedName("weather")
     var mWeather: List<Weather>? = null
 }

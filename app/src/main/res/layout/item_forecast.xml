@@ -18,13 +18,13 @@
         tools:text="Today, April 03"/>
 
     <TextView
-        android:id="@+id/weather_description"
+        android:id="@+id/tv_weather_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintLeft_toLeftOf="@+id/tv_date"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        android:text="Rainy"/>
+        tools:text="Rainy"/>
 
     <TextView
         android:id="@+id/tv_high_temperature"

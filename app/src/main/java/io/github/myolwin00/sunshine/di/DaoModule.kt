@@ -3,7 +3,7 @@ package io.github.myolwin00.sunshine.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import io.github.myolwin00.sunshine.data.source.local.ForecastDB
+import io.github.myolwin00.sunshine.data.source.local.WeatherDB
 import io.github.myolwin00.sunshine.data.source.local.ForecastDao
 import javax.inject.Singleton
 
@@ -15,13 +15,13 @@ class DaoModule {
 
     @Provides
     @Singleton
-    fun provideForecastDB(context: Context): ForecastDB {
-        return ForecastDB.getImForecastDb(context)
+    fun provideWeatherDB(context: Context): WeatherDB {
+        return WeatherDB.getImWeatherDb(context)
     }
 
     @Provides
     @Singleton
-    fun provideForecastDao(forecastDB: ForecastDB): ForecastDao {
-        return forecastDB.forecastDao
+    fun provideForecastDao(weatherDB: WeatherDB): ForecastDao {
+        return weatherDB.forecastDao
     }
 }

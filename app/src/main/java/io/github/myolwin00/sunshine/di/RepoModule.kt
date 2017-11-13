@@ -3,10 +3,8 @@ package io.github.myolwin00.sunshine.di
 import dagger.Module
 import dagger.Provides
 import io.github.myolwin00.sunshine.data.repository.WeatherRepository
-import io.github.myolwin00.sunshine.data.source.local.ForecastDB
 import io.github.myolwin00.sunshine.data.source.local.WeatherLocalSource
 import io.github.myolwin00.sunshine.data.source.remote.WeatherRemoteSource
-import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**

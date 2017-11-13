@@ -3,8 +3,7 @@ package io.github.myolwin00.sunshine.view.holders
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import io.github.myolwin00.sunshine.data.Forecast
-import io.github.myolwin00.sunshine.utils.DateFormatUtil
-import io.github.myolwin00.sunshine.utils.TemperatureUtil
+import io.github.myolwin00.sunshine.utils.SunshineUtils.*
 import kotlinx.android.synthetic.main.item_forecast.view.*
 
 /**
@@ -17,10 +16,11 @@ class ForecastVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(forecast: Forecast) {
         mForecast = forecast
 
-        itemView.tv_date.text = DateFormatUtil.formatDate(mForecast.mDt)
+        itemView.tv_date.text = DateFormatUtil.formatDate(mForecast.mDt!!)
         itemView.tv_high_temperature.text = TemperatureUtil.formatTemperature(
                 itemView.context, forecast.mMain?.mTempMax)
         itemView.tv_low_temperature.text = TemperatureUtil.formatTemperature(
                 itemView.context, forecast.mMain?.mTempMin)
+        itemView.tv_weather_desc.text = WeatherUtil.getWeatherDescStr(mForecast.mWeather)
     }
 }
