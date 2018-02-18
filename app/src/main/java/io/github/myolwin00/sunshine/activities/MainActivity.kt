@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mForecastVM: ForecastVM
     private lateinit var mForecastAdapter: ForecastAdapter
 
-    @Inject lateinit var weatherRepo: WeatherRepository
+    @Inject lateinit var mWeatherRepo: WeatherRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,5 +1,5 @@
 ext {
-    buildToolsVersion = "26.0.2"
+    buildToolsVersion = "27.0.2"
     supportLibVersion = "26.1.0"
     constraintVersion = "1.0.2"
     glideVersion      = "3.8.0"

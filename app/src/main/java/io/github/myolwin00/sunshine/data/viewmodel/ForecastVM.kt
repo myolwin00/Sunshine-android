@@ -4,15 +4,16 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import io.github.myolwin00.sunshine.data.Forecast
 import io.github.myolwin00.sunshine.data.repository.WeatherRepository
+import javax.inject.Inject
 
 /**
  * Created by myolwin00 on 11/10/17.
  */
-class ForecastVM : ViewModel(){
+class ForecastVM @Inject constructor(private val mWeatherRepo: WeatherRepository): ViewModel() {
 
-    lateinit var liveForecasts: LiveData<List<Forecast>>
+    val liveForecasts: LiveData<List<Forecast>>
 
-    fun initialize(weatherRepo: WeatherRepository) {
-        liveForecasts = weatherRepo.getForecasts()
+    init {
+        liveForecasts = mWeatherRepo.getForecasts()
     }
 }
