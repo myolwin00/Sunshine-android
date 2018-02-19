@@ -5,7 +5,10 @@ import android.arch.lifecycle.MutableLiveData
 import io.github.myolwin00.sunshine.data.Forecast
 import io.github.myolwin00.sunshine.data.source.local.WeatherLocalSource
 import io.github.myolwin00.sunshine.data.source.remote.WeatherRemoteSource
-
+import io.reactivex.functions.BiConsumer
+import io.reactivex.functions.Predicate
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 
 /**
@@ -16,42 +19,16 @@ class WeatherRepository(weatherRemoteSource: WeatherRemoteSource, weatherLocalSo
     private val mWeatherRemoteSource: WeatherRemoteSource = weatherRemoteSource
     private val mWeatherLocalSource: WeatherLocalSource = weatherLocalSource
 
-    var mCachedForecasts: MutableLiveData<List<Forecast>> = MutableLiveData()
-    var hasCache = false
-
     fun getForecasts(): LiveData<List<Forecast>> {
+        mWeatherRemoteSource.getForecasts()
+                .subscribeOn(Schedulers.io())
+                .map({ response -> response.mForecast })
+                .subscribe(
+                        {forecasts -> mWeatherLocalSource.saveForecasts(forecasts)},
+                        {t -> Timber.e("error: %s", t.message)}
+                )
 
-        if (!hasCache) {
-            val offlineForecasts = mWeatherLocalSource.getForecasts()
-            if (offlineForecasts != null && offlineForecasts.size > 0) {
-                refreshCache(offlineForecasts)
-            } else {
-                mWeatherRemoteSource.getForecasts(object: LoadForecastsCallback {
-                    override fun onLoaded(forecasts: List<Forecast>?) {
-                        if (forecasts != null) {
-                            refreshCache(forecasts)
-                            refreshLocalSource(forecasts)
-                        }
-                    }
-                    override fun onFailed() {
-                    }
-                })
-            }
-        }
-        return mCachedForecasts
-    }
 
-    private fun refreshCache(forecasts: List<Forecast>) {
-        hasCache = true
-        mCachedForecasts.value = forecasts
-    }
-
-    private fun refreshLocalSource(forecasts: List<Forecast>) {
-        mWeatherLocalSource.saveForecasts(forecasts)
-    }
-
-    interface LoadForecastsCallback {
-        fun onLoaded(forecasts: List<Forecast>?)
-        fun onFailed()
+        return mWeatherLocalSource.getForecasts()
     }
 }

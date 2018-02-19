@@ -1,6 +1,6 @@
 ext {
-    buildToolsVersion = "27.0.2"
-    supportLibVersion = "26.1.0"
+    buildToolsVersion = "27.0.3"
+    supportLibVersion = "27.0.2"
     constraintVersion = "1.0.2"
     glideVersion      = "3.8.0"
     retrofitVersion   = "2.3.0"
@@ -24,6 +24,7 @@ ext {
 
             retrofit  : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverterGson : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
 
             butterknife : "com.jakewharton:butterknife:${butterknifeVersion}",
 

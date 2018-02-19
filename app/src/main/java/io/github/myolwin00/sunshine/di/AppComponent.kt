@@ -7,7 +7,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = arrayOf(AppModule::class, RepoModule::class, DaoModule::class,
-        RetrofitModule::class, SourceModule::class))
+        RetrofitModule::class, SourceModule::class, ViewModelModule::class))
 interface AppComponent {
 
     fun inject(app: SunshineApp)

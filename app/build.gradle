@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "io.github.myolwin00.sunshine"
         minSdkVersion 21
@@ -14,6 +15,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     	buildConfigField 'String', 'WeatherApiKey', WeatherApiKey
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -35,8 +40,12 @@ dependencies {
     implementation rootProject.ext.lib.constraint
     implementation rootProject.ext.lib.design
     implementation rootProject.ext.lib.cardview
+
+
+    // retrofit
     implementation rootProject.ext.lib.retrofit
     implementation rootProject.ext.lib.retrofitConverterGson
+    implementation rootProject.ext.lib.retrofitRxJavaAdapter
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:1.0.0"
@@ -51,6 +60,8 @@ dependencies {
 
     // RxJava support for Room
     implementation "android.arch.persistence.room:rxjava2:1.0.0"
+
+    implementation 'com.jakewharton.timber:timber:4.6.1'
 
     kapt "com.google.dagger:dagger-compiler:2.13"
     implementation "com.google.dagger:dagger:2.13"

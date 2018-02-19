@@ -10,7 +10,7 @@ class WeatherLocalSource(forecastDao: ForecastDao) {
 
     private val forecastDao: ForecastDao = forecastDao
 
-    fun getForecasts(): List<Forecast>? {
+    fun getForecasts(): LiveData<List<Forecast>> {
         return forecastDao.getForecasts()
     }
 

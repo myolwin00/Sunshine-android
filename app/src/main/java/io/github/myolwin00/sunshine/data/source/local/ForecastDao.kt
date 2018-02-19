@@ -17,5 +17,5 @@ interface ForecastDao {
     fun saveForecasts(forecasts: List<Forecast>?): Array<Long>
 
     @Query("SELECT * FROM forecasts")
-    fun getForecasts(): List<Forecast>?
+    fun getForecasts(): LiveData<List<Forecast>>
 }

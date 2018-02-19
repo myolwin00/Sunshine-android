@@ -11,9 +11,5 @@ import javax.inject.Inject
  */
 class ForecastVM @Inject constructor(private val mWeatherRepo: WeatherRepository): ViewModel() {
 
-    val liveForecasts: LiveData<List<Forecast>>
-
-    init {
-        liveForecasts = mWeatherRepo.getForecasts()
-    }
+    val liveForecasts: LiveData<List<Forecast>> = mWeatherRepo.getForecasts()
 }
