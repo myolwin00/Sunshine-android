@@ -3,8 +3,10 @@ package io.github.myolwin00.sunshine.data.repository
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import io.github.myolwin00.sunshine.data.Forecast
+import io.github.myolwin00.sunshine.data.ForecastResponse
 import io.github.myolwin00.sunshine.data.source.local.WeatherLocalSource
 import io.github.myolwin00.sunshine.data.source.remote.WeatherRemoteSource
+import io.reactivex.Observable
 import io.reactivex.functions.BiConsumer
 import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
@@ -22,7 +24,8 @@ class WeatherRepository(weatherRemoteSource: WeatherRemoteSource, weatherLocalSo
     fun getForecasts(): LiveData<List<Forecast>> {
         mWeatherRemoteSource.getForecasts()
                 .subscribeOn(Schedulers.io())
-                .map({ response -> response.mForecast })
+                .toObservable()
+                .map { response -> response.mForecast }
                 .subscribe(
                         {forecasts -> mWeatherLocalSource.saveForecasts(forecasts)},
                         {t -> Timber.e("error: %s", t.message)}

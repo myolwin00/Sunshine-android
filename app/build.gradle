@@ -60,6 +60,10 @@ dependencies {
     // RxJava support for Room
     implementation rootProject.ext.lib.roomrxjava
 
+    // RxJava
+    implementation rootProject.ext.lib.rxjava
+    implementation rootProject.ext.lib.rxandroid
+
     implementation rootProject.ext.lib.timber
 
     implementation rootProject.ext.lib.dagger

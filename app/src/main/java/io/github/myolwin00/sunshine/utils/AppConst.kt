@@ -6,7 +6,9 @@ package io.github.myolwin00.sunshine.utils
 class AppConst {
 
     companion object {
-        const val RANGOON_ID = "1298824"
+        const val BASE_API_URL = "http://api.openweathermap.org/"
+        //rangoon-1298824
+        const val RANGOON_ID = "5016884" //landon
         const val TEMP_UNIT = "imperial"
     }
 }

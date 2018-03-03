@@ -12,7 +12,6 @@ import retrofit2.http.Query
  */
 interface WeatherService {
 
-    //forecast?id=1298824&appid=62c7ea7ffab18d6c20f213bf8bafdd78
     @GET("data/2.5/forecast")
     fun getForecasts (
             @Query("id") cityId: String,

@@ -3,6 +3,7 @@ package io.github.myolwin00.sunshine.di
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
+import io.github.myolwin00.sunshine.utils.AppConst
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,7 +21,7 @@ class RetrofitModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://api.openweathermap.org/")
+                .baseUrl(AppConst.BASE_API_URL)
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)

@@ -12,7 +12,7 @@ class Weather {
     var mIcon: String? = null
 
     @SerializedName("id")
-    var mId: Long? = null
+    var mId: Int? = null
 
     @SerializedName("main")
     var mMain: String? = null
