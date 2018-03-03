@@ -1,13 +1,29 @@
 ext {
     buildToolsVersion = "27.0.3"
-    supportLibVersion = "27.0.2"
+    supportLibVersion = "27.1.0"
     constraintVersion = "1.0.2"
-    glideVersion      = "3.8.0"
+
+    glideVersion      = "4.6.1"
+
     retrofitVersion   = "2.3.0"
+
     gsonVersion       = "2.8.2"
+
     butterknifeVersion= "8.6.0"
-    eventbusVersion   = "3.0.0"
+
+    timberVersion = "4.6.1"
+
+    daggerVersion = "2.14.1"
+
+    rxandroidVersion = "2.0.2"
+    rxjavaVersion = "2.1.10"
+
+    lifecycleVersion = "1.1.0"
+    roomVersion = "1.0.0"
+
     junitVersion       = "4.12"
+
+    kotlinVersion = '1.2.20'
 
     lib = [
             appcompat : "com.android.support:appcompat-v7:${supportLibVersion}",
@@ -15,26 +31,43 @@ ext {
             design    : "com.android.support:design:${supportLibVersion}",
             cardview  : "com.android.support:cardview-v7:${supportLibVersion}",
             palette   : "com.android.support:palette-v7:${supportLibVersion}",
-
             constraint: "com.android.support.constraint:constraint-layout:${constraintVersion}",
-
-            gson      : "com.google.code.gson:gson:${gsonVersion}",
-
-            glide     : "com.github.bumptech.glide:glide:${glideVersion}",
 
             retrofit  : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverterGson : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
             retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
 
+            rxjava : "io.reactivex.rxjava2:rxjava:${rxjavaVersion}",
+            rxandroid : "io.reactivex.rxjava2:rxandroid:${rxandroidVersion}",
+
+            lifecycle: "android.arch.lifecycle:extensions:${lifecycleVersion}",
+            lifecycleCommon : "android.arch.lifecycle:common-java8:${lifecycleVersion}",
+            viewmodel : "android.arch.lifecycle:viewmodel:${lifecycleVersion}",
+            livedata : "android.arch.lifecycle:livedata:${lifecycleVersion}",
+            room : "android.arch.persistence.room:runtime:${roomVersion}",
+            roomrxjava : "android.arch.persistence.room:rxjava2:${roomVersion}",
+
+            dagger : "com.google.dagger:dagger:${daggerVersion}",
+
+            timber : "com.jakewharton.timber:timber:${timberVersion}",
+
+            gson      : "com.google.code.gson:gson:${gsonVersion}",
+
+            glide     : "com.github.bumptech.glide:glide:${glideVersion}",
+
             butterknife : "com.jakewharton:butterknife:${butterknifeVersion}",
 
-            eventbus : "org.greenrobot:eventbus:${eventbusVersion}",
+            kotlin : "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
 
             junit    : "junit:junit:${junitVersion}"
     ]
 
-    annotationProcessor = [
+    ap = [
 
-            butterknife : "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+            butterknife : "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
+            glide : "com.github.bumptech.glide:compiler:${glideVersion}",
+            dagger : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            room : "android.arch.persistence.room:compiler:${roomVersion}",
+            lifecycle : "android.arch.lifecycle:compiler:${lifecycleVersion}"
     ]
 }

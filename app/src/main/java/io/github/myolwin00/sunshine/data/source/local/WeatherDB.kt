@@ -10,7 +10,7 @@ import io.github.myolwin00.sunshine.data.Weather
 /**
  * Created by myolwin00 on 11/11/17.
  */
-@Database(entities = arrayOf(Forecast::class), version = 1)
+@Database(entities = arrayOf(Forecast::class), version = 1, exportSchema = false)
 abstract class WeatherDB : RoomDatabase() {
 
     abstract val forecastDao: ForecastDao
