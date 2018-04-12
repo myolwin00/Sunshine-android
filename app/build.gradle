@@ -33,42 +33,34 @@ kapt {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation rootProject.ext.lib.kotlin
     implementation rootProject.ext.lib.appcompat
     implementation rootProject.ext.lib.support
     implementation rootProject.ext.lib.constraint
     implementation rootProject.ext.lib.design
     implementation rootProject.ext.lib.cardview
-
     // retrofit
     implementation rootProject.ext.lib.retrofit
     implementation rootProject.ext.lib.retrofitConverterGson
     implementation rootProject.ext.lib.retrofitRxJavaAdapter
-
     // ViewModel and LiveData
     implementation rootProject.ext.lib.lifecycle
     //kapt rootProject.ext.ap.lifecycle
-
     // Java8 support for Lifecycles
     implementation rootProject.ext.lib.lifecycleCommon
-
     // Room
     implementation rootProject.ext.lib.room
     kapt rootProject.ext.ap.room
-
     // RxJava support for Room
     implementation rootProject.ext.lib.roomrxjava
-
     // RxJava
     implementation rootProject.ext.lib.rxjava
     implementation rootProject.ext.lib.rxandroid
-
     implementation rootProject.ext.lib.timber
-
     implementation rootProject.ext.lib.dagger
     kapt rootProject.ext.ap.dagger
-
     testImplementation rootProject.ext.lib.junit
+//    implementation 'com.android.support:design:28.0.0-alpha1'
 }
 

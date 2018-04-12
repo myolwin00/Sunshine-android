@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeForecast() {
         mForecastVM.liveForecasts.observe(this, Observer {
-            forecasts -> mForecastAdapter.replaceData(forecasts!!)
+            forecasts -> mForecastAdapter.submitList(forecasts)
             pb_loading.visibility = GONE
         })
     }
