@@ -1,7 +1,7 @@
 package io.github.myolwin00.sunshine.data.viewmodel
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import io.github.myolwin00.sunshine.data.Forecast
 import io.github.myolwin00.sunshine.data.repository.WeatherRepository
 import javax.inject.Inject

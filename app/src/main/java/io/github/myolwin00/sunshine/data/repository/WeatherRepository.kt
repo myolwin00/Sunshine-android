@@ -1,16 +1,9 @@
 package io.github.myolwin00.sunshine.data.repository
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import io.github.myolwin00.sunshine.data.Forecast
-import io.github.myolwin00.sunshine.data.ForecastResponse
 import io.github.myolwin00.sunshine.data.source.local.WeatherLocalSource
 import io.github.myolwin00.sunshine.data.source.remote.WeatherRemoteSource
-import io.reactivex.Observable
-import io.reactivex.functions.BiConsumer
-import io.reactivex.functions.Predicate
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 
 
 /**
@@ -22,14 +15,15 @@ class WeatherRepository(weatherRemoteSource: WeatherRemoteSource, weatherLocalSo
     private val mWeatherLocalSource: WeatherLocalSource = weatherLocalSource
 
     fun getForecasts(): LiveData<List<Forecast>> {
-        mWeatherRemoteSource.getForecasts()
-                .subscribeOn(Schedulers.io())
-                .toObservable()
-                .map { response -> response.mForecast }
-                .subscribe(
-                        {forecasts -> mWeatherLocalSource.saveForecasts(forecasts)},
-                        {t -> Timber.e("error: %s", t.message)}
-                )
+        TODO("getForecasts")
+//        mWeatherRemoteSource.getForecasts()
+//                .subscribeOn(Schedulers.io())
+//                .toObservable()
+//                .map { response -> response.mForecast }
+//                .subscribe(
+//                        {forecasts -> mWeatherLocalSource.saveForecasts(forecasts)},
+//                        {t -> Timber.e("error: %s", t.message)}
+//                )
 
 
         return mWeatherLocalSource.getForecasts()

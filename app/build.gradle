@@ -1,20 +1,21 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 29
+
     defaultConfig {
         applicationId "io.github.myolwin00.sunshine"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-    	buildConfigField 'String', 'WeatherApiKey', WeatherApiKey
+        buildConfigField 'String', 'WeatherApiKey', WeatherApiKey
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -26,41 +27,50 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-kapt {
-    generateStubs = true
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation rootProject.ext.lib.kotlin
-    implementation rootProject.ext.lib.appcompat
-    implementation rootProject.ext.lib.support
-    implementation rootProject.ext.lib.constraint
-    implementation rootProject.ext.lib.design
-    implementation rootProject.ext.lib.cardview
-    // retrofit
-    implementation rootProject.ext.lib.retrofit
-    implementation rootProject.ext.lib.retrofitConverterGson
-    implementation rootProject.ext.lib.retrofitRxJavaAdapter
-    // ViewModel and LiveData
-    implementation rootProject.ext.lib.lifecycle
-    //kapt rootProject.ext.ap.lifecycle
-    // Java8 support for Lifecycles
-    implementation rootProject.ext.lib.lifecycleCommon
-    // Room
-    implementation rootProject.ext.lib.room
-    kapt rootProject.ext.ap.room
-    // RxJava support for Room
-    implementation rootProject.ext.lib.roomrxjava
-    // RxJava
-    implementation rootProject.ext.lib.rxjava
-    implementation rootProject.ext.lib.rxandroid
-    implementation rootProject.ext.lib.timber
-    implementation rootProject.ext.lib.dagger
-    kapt rootProject.ext.ap.dagger
-    testImplementation rootProject.ext.lib.junit
-//    implementation 'com.android.support:design:28.0.0-alpha1'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50'
+
+    implementation "androidx.core:core-ktx:1.2.0-alpha04"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.fragment:fragment-ktx:1.2.0-alpha04"
+    implementation "androidx.preference:preference-ktx:1.1.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    implementation 'com.google.android.material:material:1.1.0-alpha10'
+
+    def nav_version = "2.2.0-alpha03"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    def retrofit_version = "2.6.2"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    def lifecycle_version = "2.2.0-alpha05"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    implementation "com.jakewharton.timber:timber:4.7.1"
+
+    def room_version = "2.2.0-rc01"
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    def dagger_version = "2.24"
+    api "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    api "com.google.dagger:dagger-android:$dagger_version"
+    api "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    testImplementation "junit:junit:4.12"
 }
 

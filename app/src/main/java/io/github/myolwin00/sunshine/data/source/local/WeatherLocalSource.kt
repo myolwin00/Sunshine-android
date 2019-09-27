@@ -1,6 +1,6 @@
 package io.github.myolwin00.sunshine.data.source.local
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import io.github.myolwin00.sunshine.data.Forecast
 
 /**

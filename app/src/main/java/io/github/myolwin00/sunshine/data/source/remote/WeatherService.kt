@@ -1,9 +1,6 @@
 package io.github.myolwin00.sunshine.data.source.remote
 
-import io.github.myolwin00.sunshine.data.Forecast
 import io.github.myolwin00.sunshine.data.ForecastResponse
-import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -17,5 +14,5 @@ interface WeatherService {
             @Query("id") cityId: String,
             @Query("units") unit: String,
             @Query("appid") apiKey: String
-    ) : Single<ForecastResponse>
+    ) : ForecastResponse
 }

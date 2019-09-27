@@ -1,13 +1,11 @@
 package io.github.myolwin00.sunshine.di
 
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import io.github.myolwin00.sunshine.utils.AppConst
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -22,8 +20,7 @@ class RetrofitModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(AppConst.BASE_API_URL)
-                .addConverterFactory(GsonConverterFactory.create(Gson()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create())
                 .client(okHttpClient)
                 .build()
     }

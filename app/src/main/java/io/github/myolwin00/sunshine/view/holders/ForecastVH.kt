@@ -1,6 +1,6 @@
 package io.github.myolwin00.sunshine.view.holders
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import io.github.myolwin00.sunshine.data.Forecast

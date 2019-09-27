@@ -1,8 +1,10 @@
 package io.github.myolwin00.sunshine.data
 
-import android.arch.persistence.room.*
 import android.content.Context
-import com.google.gson.annotations.SerializedName
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import io.github.myolwin00.sunshine.data.source.local.WeatherTypeConverter
 import io.github.myolwin00.sunshine.utils.SunshineUtils
 
@@ -14,17 +16,13 @@ import io.github.myolwin00.sunshine.utils.SunshineUtils
 class Forecast {
 
     @PrimaryKey
-    @SerializedName("dt")
     var mDt: Long? = null
 
-    @SerializedName("dt_txt")
     var mDtTxt: String? = null
 
     @Embedded
-    @SerializedName("main")
     var mMain: Main? = null
 
-    @SerializedName("weather")
     var mWeather: List<Weather>? = null
 
     fun getWeatherIcon(): Int {

@@ -1,18 +1,17 @@
 package io.github.myolwin00.sunshine.activities
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View.GONE
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.myolwin00.sunshine.R
 import io.github.myolwin00.sunshine.SunshineApp
 import io.github.myolwin00.sunshine.adapters.ForecastAdapter
-import io.github.myolwin00.sunshine.data.repository.WeatherRepository
-import io.github.myolwin00.sunshine.data.viewmodel.WeatherViewModelFactory
 import io.github.myolwin00.sunshine.data.viewmodel.ForecastVM
+import io.github.myolwin00.sunshine.data.viewmodel.WeatherViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         (applicationContext as SunshineApp).appComponent.inject(this)
 
-        mForecastVM = ViewModelProviders.of(this, mViewModelFactory).get(ForecastVM::class.java)
+        mForecastVM = ViewModelProvider(this, mViewModelFactory).get(ForecastVM::class.java)
 
         setupRecyclerView()
 
