@@ -37,7 +37,7 @@ class ForecastAdapter : ListAdapter<Forecast, ForecastVH>(DIFF_CALLBACK) {
                     @NonNull oldUser: Forecast, @NonNull newUser: Forecast): Boolean {
                 // NOTE: if you use equals, your object must properly override Object#equals()
                 // Incorrectly returning false here will result in too many animations.
-                return oldUser == newUser
+                return oldUser.mDt == newUser.mDt
             }
         }
     }
