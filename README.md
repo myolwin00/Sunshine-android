@@ -1,4 +1,6 @@
-# Sunshine
+# Sunshine 
+[![CircleCI](https://circleci.com/gh/myolwin00/Sunshine-android.svg?style=svg)](https://circleci.com/gh/myolwin00/Sunshine-android)
+
   Component testing project
   
   show a list of weather data from (http://openweathermap.org/)
