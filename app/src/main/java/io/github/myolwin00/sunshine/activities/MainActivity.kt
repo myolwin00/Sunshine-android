@@ -2,9 +2,11 @@ package io.github.myolwin00.sunshine.activities
 
 import android.os.Bundle
 import android.view.View.GONE
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.myolwin00.sunshine.R
@@ -17,10 +19,10 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mForecastVM: ForecastVM
-    private lateinit var mForecastAdapter: ForecastAdapter
-
-    @Inject lateinit var mViewModelFactory: WeatherViewModelFactory
+    @Inject
+    lateinit var viewModelFactory: WeatherViewModelFactory
+    private val forecastViewModel: ForecastVM by viewModels { viewModelFactory }
+    private lateinit var forecastAdapter: ForecastAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,24 +30,24 @@ class MainActivity : AppCompatActivity() {
 
         (applicationContext as SunshineApp).appComponent.inject(this)
 
-        mForecastVM = ViewModelProvider(this, mViewModelFactory).get(ForecastVM::class.java)
-
         setupRecyclerView()
 
         observeForecast()
     }
 
     private fun setupRecyclerView() {
-        mForecastAdapter = ForecastAdapter()
-        rv_forecasts.layoutManager = LinearLayoutManager(this)
-        rv_forecasts.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        rv_forecasts.adapter = mForecastAdapter
+        forecastAdapter = ForecastAdapter()
+        rv_forecasts.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
+            adapter = forecastAdapter
+        }
     }
 
     private fun observeForecast() {
-        mForecastVM.liveForecasts.observe(this, Observer {
-            forecasts -> mForecastAdapter.submitList(forecasts)
+        forecastViewModel.liveForecasts.observe(this) { forecasts ->
+            forecastAdapter.submitList(forecasts)
             pb_loading.visibility = GONE
-        })
+        }
     }
 }

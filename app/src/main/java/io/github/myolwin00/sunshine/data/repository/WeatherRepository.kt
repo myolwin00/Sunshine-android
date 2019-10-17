@@ -26,6 +26,6 @@ class WeatherRepository(weatherRemoteSource: WeatherRemoteSource, weatherLocalSo
 //                )
 
 
-        return mWeatherLocalSource.getForecasts()
+//        return mWeatherLocalSource.getForecasts()
     }
 }

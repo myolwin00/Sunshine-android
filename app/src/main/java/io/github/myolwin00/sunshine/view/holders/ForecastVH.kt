@@ -1,11 +1,8 @@
 package io.github.myolwin00.sunshine.view.holders
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import io.github.myolwin00.sunshine.data.Forecast
-import io.github.myolwin00.sunshine.utils.SunshineUtils
-import io.github.myolwin00.sunshine.utils.SunshineUtils.*
 import kotlinx.android.synthetic.main.item_forecast.view.*
 
 /**
