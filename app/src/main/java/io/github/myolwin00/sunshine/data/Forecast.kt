@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import io.github.myolwin00.sunshine.data.source.local.WeatherTypeConverter
-import io.github.myolwin00.sunshine.utils.SunshineUtils
+import io.github.myolwin00.sunshine.utils.*
 
 /**
  * Created by myolwin00 on 11/9/17.
@@ -26,22 +26,47 @@ class Forecast {
     var mWeather: List<Weather>? = null
 
     fun getWeatherIcon(): Int {
-        return SunshineUtils.WeatherUtil.getWeatherIcon(mWeather?.get(0)?.mId)
+        return getWeatherDrawable(mWeather?.get(0)?.mId)
     }
 
     fun getReadableDate(): String {
-        return SunshineUtils.DateFormatUtil.formatDate(mDt!!)
+        return formatDate(mDt!!)
     }
 
     fun getHighTemp(context: Context): String {
-        return SunshineUtils.TemperatureUtil.formatTemperature(context, mMain?.mTempMax)
+        return formatTemperature(context, mMain?.mTempMax)
     }
 
     fun getLowTemp(context: Context): String {
-        return SunshineUtils.TemperatureUtil.formatTemperature(context, mMain?.mTempMin)
+        return formatTemperature(context, mMain?.mTempMin)
     }
 
     fun getWeatherDesc(): String {
-        return SunshineUtils.WeatherUtil.getWeatherDescStr(mWeather)
+        return getWeatherDescStr(mWeather)
     }
+}
+
+data class ForecastResponse(
+        var mCnt: Long,
+        var mCod: String,
+        var mForecast: List<Forecast>,
+        var mMessage: Double
+)
+
+class Main {
+    var mGrndLevel: Double? = null
+    var mHumidity: Long? = null
+    var mPressure: Double? = null
+    var mSeaLevel: Double? = null
+    var mTemp: Double? = null
+    var mTempKf: Double? = null
+    var mTempMax: Double? = null
+    var mTempMin: Double? = null
+}
+
+class Weather {
+    var mDescription: String? = null
+    var mIcon: String? = null
+    var mId: Int? = null
+    var mMain: String? = null
 }

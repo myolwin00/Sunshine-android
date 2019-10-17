@@ -9,10 +9,10 @@ import io.github.myolwin00.sunshine.data.source.remote.WeatherRemoteSource
 /**
  * Created by myolwin00 on 11/11/17.
  */
-class WeatherRepository(weatherRemoteSource: WeatherRemoteSource, weatherLocalSource: WeatherLocalSource) {
-
-    private val mWeatherRemoteSource: WeatherRemoteSource = weatherRemoteSource
-    private val mWeatherLocalSource: WeatherLocalSource = weatherLocalSource
+class WeatherRepository(
+        private val weatherRemoteSource: WeatherRemoteSource,
+        private val weatherLocalSource: WeatherLocalSource
+) {
 
     fun getForecasts(): LiveData<List<Forecast>> {
         TODO("getForecasts")

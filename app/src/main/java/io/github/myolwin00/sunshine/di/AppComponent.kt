@@ -2,7 +2,8 @@ package io.github.myolwin00.sunshine.di
 
 import dagger.Component
 import io.github.myolwin00.sunshine.SunshineApp
-import io.github.myolwin00.sunshine.activities.MainActivity
+import io.github.myolwin00.sunshine.HomeActivity
+import io.github.myolwin00.sunshine.forecasts.ForecastsFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -11,5 +12,6 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(app: SunshineApp)
-    fun inject(mainActivity: MainActivity)
+    fun inject(homeActivity: HomeActivity)
+    fun inject(fragment: ForecastsFragment)
 }

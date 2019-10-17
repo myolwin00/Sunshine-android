@@ -25,6 +25,4 @@ class SunshineApp : Application() {
             Timber.plant(Timber.DebugTree())
         }
     }
-
-    fun appComponent(): AppComponent = appComponent
 }
