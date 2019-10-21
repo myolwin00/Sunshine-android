@@ -1,4 +1,4 @@
-package io.github.myolwin00.sunshine.utils
+package io.github.myolwin00.sunshine.app.utils
 
 /**
  * Created by myolwin00 on 11/11/17.

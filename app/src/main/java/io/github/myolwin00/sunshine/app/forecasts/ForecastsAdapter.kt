@@ -1,27 +1,24 @@
-package io.github.myolwin00.sunshine.forecasts
+package io.github.myolwin00.sunshine.app.forecasts
 
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import io.github.myolwin00.sunshine.R
-import io.github.myolwin00.sunshine.data.Forecast
+import io.github.myolwin00.sunshine.data.model.Forecast
 import io.github.myolwin00.sunshine.databinding.ItemForecastBinding
 
 /**
  * Created by myolwin00 on 11/9/17.
  */
-class ForecastAdapter : ListAdapter<Forecast, ForecastAdapter.ForecastViewHolder>(ForecastDiffCallback) {
+class ForecastsAdapter : ListAdapter<Forecast, ForecastsAdapter.ForecastViewHolder>(ForecastDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastViewHolder {
         return LayoutInflater.from(parent.context)
                 .let {
                     ItemForecastBinding.inflate(it, parent, false)
                 }.let {
-                    it.context = parent.context
                     ForecastViewHolder(it)
                 }
     }
@@ -36,18 +33,19 @@ class ForecastAdapter : ListAdapter<Forecast, ForecastAdapter.ForecastViewHolder
 
         fun bind(forecast: Forecast) {
             binding.forecast = forecast
+            binding.executePendingBindings()
         }
     }
 
     object ForecastDiffCallback : DiffUtil.ItemCallback<Forecast>() {
         override fun areItemsTheSame(
-                @NonNull oldUser: Forecast, @NonNull newUser: Forecast): Boolean {
-            return oldUser.mDt === newUser.mDt
+                @NonNull old: Forecast, @NonNull new: Forecast): Boolean {
+            return old.dt == new.dt
         }
 
         override fun areContentsTheSame(
-                @NonNull oldUser: Forecast, @NonNull newUser: Forecast): Boolean {
-            return oldUser.mDt == newUser.mDt
+                @NonNull old: Forecast, @NonNull new: Forecast): Boolean {
+            return old == new
         }
     }
 }

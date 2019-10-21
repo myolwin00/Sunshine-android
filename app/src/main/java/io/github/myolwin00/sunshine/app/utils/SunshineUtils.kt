@@ -1,19 +1,14 @@
-package io.github.myolwin00.sunshine.utils
+package io.github.myolwin00.sunshine.app.utils
 
-import android.content.Context
-import android.util.Log
 import io.github.myolwin00.sunshine.R
 import io.github.myolwin00.sunshine.data.Weather
-import timber.log.Timber
-import java.lang.StringBuilder
 import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * Created by myolwin00 on 11/13/17.
  */
 fun getWeatherDescStr(weathers: List<Weather>?) = weathers?.map {
-    it.mDescription
+    it.description
 }?.joinToString(" ") ?: ""
 
 
@@ -42,8 +37,4 @@ fun formatDate(millisecond: Long): String {
 
 private fun getActualMillisecond(millisecond: Long): Long {
     return millisecond * 1000
-}
-
-fun formatTemperature(context: Context, temperature: Double?): String {
-    return String.format(context.getString(R.string.format_temperature), temperature)
 }

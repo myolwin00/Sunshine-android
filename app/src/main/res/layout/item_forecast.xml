@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="context"
-            type="android.content.Context"/>
-        <variable
-            name="forecast"
-            type="io.github.myolwin00.sunshine.data.Forecast"/>
+        <import type="io.github.myolwin00.sunshine.data.model.Forecast" />
+        <variable name="forecast" type="io.github.myolwin00.sunshine.data.model.Forecast"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +40,7 @@
             android:id="@+id/tv_weather_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{forecast.getWeatherDesc()}"
+            android:text="@{forecast.weatherDesc}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintLeft_toLeftOf="@+id/tv_date"
             app:layout_constraintTop_toTopOf="@+id/guideline"
@@ -57,7 +53,7 @@
             android:fontFamily="sans-serif-light"
             android:textSize="22sp"
             android:textColor="@android:color/black"
-            android:text="@{forecast.getHighTemp(context)}"
+            android:text="@{@string/format_temperature(forecast.tempMax)}"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintRight_toLeftOf="@+id/tv_low_temperature"
             app:layout_constraintTop_toTopOf="@+id/guideline"
@@ -70,7 +66,7 @@
             android:fontFamily="sans-serif-light"
             android:textSize="18sp"
             android:gravity="end"
-            android:text="@{forecast.getLowTemp(context)}"
+            android:text="@{@string/format_temperature(forecast.tempMin)}"
             app:layout_constraintBottom_toBottomOf="@+id/guideline"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline"

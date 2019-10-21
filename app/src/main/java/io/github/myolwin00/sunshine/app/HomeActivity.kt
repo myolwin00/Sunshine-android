@@ -1,4 +1,4 @@
-package io.github.myolwin00.sunshine
+package io.github.myolwin00.sunshine.app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

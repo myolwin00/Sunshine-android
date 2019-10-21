@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/forecastsFragment"
-        android:name="io.github.myolwin00.sunshine.forecasts.ForecastsFragment"
+        android:name="io.github.myolwin00.sunshine.app.forecasts.ForecastsFragment"
         android:label="ForecastsFragment" />
 </navigation>

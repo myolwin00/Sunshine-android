@@ -1,11 +1,11 @@
-package io.github.myolwin00.sunshine.data.source.local
+package io.github.myolwin00.sunshine.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import io.github.myolwin00.sunshine.data.Forecast
+import io.github.myolwin00.sunshine.data.ForecastEntity
 
 /**
  * Created by myolwin00 on 11/11/17.
@@ -14,8 +14,8 @@ import io.github.myolwin00.sunshine.data.Forecast
 interface ForecastDao {
 
     @Insert(onConflict = REPLACE)
-    fun saveForecasts(forecasts: List<Forecast>?): Array<Long>
+    fun insertForecasts(forecasts: List<ForecastEntity>): Array<Long>
 
     @Query("SELECT * FROM forecasts")
-    fun getForecasts(): LiveData<List<Forecast>>
+    fun observeForecasts(): LiveData<List<ForecastEntity>>
 }
