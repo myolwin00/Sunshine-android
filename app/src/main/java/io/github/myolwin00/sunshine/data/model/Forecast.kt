@@ -1,5 +1,7 @@
 package io.github.myolwin00.sunshine.data.model
 
+import androidx.annotation.DrawableRes
+import io.github.myolwin00.sunshine.R
 import io.github.myolwin00.sunshine.app.utils.formatDate
 import io.github.myolwin00.sunshine.app.utils.getWeatherDrawable
 

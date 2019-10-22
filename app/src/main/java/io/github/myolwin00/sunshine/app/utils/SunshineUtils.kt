@@ -7,9 +7,9 @@ import java.text.SimpleDateFormat
 /**
  * Created by myolwin00 on 11/13/17.
  */
-fun getWeatherDescStr(weathers: List<Weather>?) = weathers?.map {
+fun getWeatherDescStr(weathers: List<Weather>?) = weathers?.joinToString(" ") {
     it.description
-}?.joinToString(" ") ?: ""
+} ?: ""
 
 
 fun getWeatherDrawable(weatherId: Int?) = when (weatherId) {
