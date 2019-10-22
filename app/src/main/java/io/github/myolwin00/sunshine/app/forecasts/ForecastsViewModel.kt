@@ -16,13 +16,14 @@ class ForecastsViewModel @Inject constructor(weatherRepository: WeatherRepositor
     private val _loading: MutableLiveData<Boolean> = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
 
-    private val _forecasts: LiveData<List<Forecast>> = weatherRepository.getForecasts()
+    private val _forecasts = weatherRepository.observeForecasts()
     val forecasts: LiveData<List<Forecast>> = _forecasts
 
     init {
         viewModelScope.launch {
             _loading.value = true
             when (weatherRepository.fetchForecasts()) {
+                // will handle error case later
                 is Result.Success, is Result.Error -> _loading.value = false
             }
         }

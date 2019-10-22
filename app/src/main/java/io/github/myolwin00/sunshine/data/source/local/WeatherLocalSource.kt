@@ -2,6 +2,7 @@ package io.github.myolwin00.sunshine.data.source.local
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.map
 import io.github.myolwin00.sunshine.data.ForecastEntity
 import io.github.myolwin00.sunshine.data.dao.ForecastDao
@@ -15,8 +16,10 @@ import javax.inject.Inject
  */
 class WeatherLocalSource @Inject constructor(private val forecastDao: ForecastDao) {
 
-    fun getForecasts(): LiveData<List<Forecast>> {
-        return forecastDao.observeForecasts().map { it.toDomain() }
+    fun observeForecasts(): LiveData<List<Forecast>> {
+        return forecastDao.observeForecasts()
+                .distinctUntilChanged()
+                .map { it.toDomain() }
     }
 
     fun saveForecasts(forecasts: List<Forecast>) {

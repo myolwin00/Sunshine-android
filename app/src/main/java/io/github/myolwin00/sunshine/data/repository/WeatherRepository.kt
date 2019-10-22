@@ -28,5 +28,5 @@ class WeatherRepository @Inject constructor(
         }
     }
 
-    fun getForecasts(): LiveData<List<Forecast>> = weatherLocalSource.getForecasts()
+    fun observeForecasts(): LiveData<List<Forecast>> = weatherLocalSource.observeForecasts()
 }
