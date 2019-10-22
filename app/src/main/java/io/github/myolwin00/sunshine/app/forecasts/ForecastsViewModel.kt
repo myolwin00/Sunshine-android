@@ -28,14 +28,4 @@ class ForecastsViewModel @Inject constructor(weatherRepository: WeatherRepositor
             }
         }
     }
-
-    class WeatherViewModelFactory @Inject constructor(
-            private val weatherRepository: WeatherRepository
-    ) : ViewModelProvider.Factory {
-
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return ForecastsViewModel(weatherRepository) as T
-        }
-
-    }
 }

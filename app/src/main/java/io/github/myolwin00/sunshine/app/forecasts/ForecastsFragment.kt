@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import dagger.android.support.DaggerFragment
 import io.github.myolwin00.sunshine.app.SunshineApp
 import io.github.myolwin00.sunshine.databinding.FragmentForecastsBinding
 import timber.log.Timber
 import javax.inject.Inject
 
-class ForecastsFragment : Fragment() {
+class ForecastsFragment : DaggerFragment() {
 
     @Inject
-    lateinit var viewModelFactory: ForecastsViewModel.WeatherViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private val forecastsViewModel: ForecastsViewModel by viewModels { viewModelFactory }
     private lateinit var binding: FragmentForecastsBinding
 
@@ -27,8 +29,6 @@ class ForecastsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        (context?.applicationContext as SunshineApp).appComponent.inject(this)
 
         val adapter = ForecastsAdapter()
         binding.apply {
